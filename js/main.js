@@ -1,5 +1,5 @@
 const control = document.querySelectorAll('[data-control]')
-
+const statistic = document.querySelectorAll('[data-statistic]')
 const pecas = {
     damage: {
         force: 25,
@@ -38,6 +38,7 @@ const pecas = {
 control.forEach( element => {
     element.addEventListener('click', (evento) => {
         manipulationD(evento.target.dataset.control, evento.target.parentNode)
+        attStatistic(evento.target.dataset.peca)
     })
     
 });
@@ -52,4 +53,11 @@ function manipulationD (op, control){
     else {
         peca.value = parseInt(peca.value) + 1
     }
+}
+
+function attStatistic(peca){
+
+    statistic.forEach( (element) =>{
+        element.textContent = parseInt(element.textContent) + pecas[peca][element.dataset.statistic]
+    })
 }
